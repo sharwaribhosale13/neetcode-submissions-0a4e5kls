@@ -1,35 +1,17 @@
 class Solution {
-    public int trap(int[] height) {
-          int left=0;
-          int right=height.length-1;
+    public int maxProfit(int[] prices) {
+        int min=prices[0];
+        int profit=0;
 
-          int total=0;
-          int leftmax= height[0];
-          int rightmax=height[right];
-
-          while(left<right)
-          {
-            if(height[left]<height[right])
+        for(int i=0;i<prices.length;i++)
+        {
+            if(prices[i]<min)
             {
-                leftmax=Math.max(leftmax,height[left]);
-                if(leftmax-height[left]>0)
-                {
-                    total=total+leftmax-height[left];
-                }
-                left++;
+                min=prices[i];
             }
-            else
-            {
-                rightmax=Math.max(rightmax,height[right]);
-                if(rightmax-height[right]>0)
-                {
-                    total=total+rightmax-height[right];
-                }
-                right--;
-            }
-          } 
-          return total;
+            profit=Math.max(profit,prices[i]-min);
+        }
+        return profit;
         
     }
 }
-
